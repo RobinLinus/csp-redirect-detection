@@ -51,6 +51,8 @@ You are currently <b><?php echo $state ? "signed in" : "signed out"?></b> on Lin
 <li><a href="https://www.eff.org/privacybadger" target="_blank"><b>Protect</b> yourself with Privacy Badger</a></li>
 <li><a href="https://github.com/RobinLinus/csp-redirect-detection" target="_blank"><b>View</b> Source</a></li>
 
+<!-- Restart detection after 20s -->
+<meta http-equiv="refresh" content="20;URL='/'" />	
 </ul>
 </body>
 </html>

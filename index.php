@@ -24,15 +24,17 @@
 	</style>
 </head>
 <body>
+<!-- Make a request to an url that redirects to https://www.linkedin.com only if the user is logged in -->
+<img src="https://fr.linkedin.com" onerror="done()">
+
+<!-- Wait until request to report-uri is sent and display status -->
 <script>
 	function done(){
-		setTimeout(function(){	// wait until request to report-uri is sent
+		setTimeout(function(){	
 			window.location = '/status.php';
 		}, 200);
 	}
 </script>
-<!-- Make a request to an url that redirects to https://www.linkedin.com only if the user is logged in -->
-<img src="https://fr.linkedin.com" onerror="done()">
 
 <!-- "If NoScript": redirect after 5s  -->
 <meta http-equiv="refresh" content="5;URL='/status.php'" />	
