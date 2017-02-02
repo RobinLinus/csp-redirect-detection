@@ -16,8 +16,9 @@
 			background: <?php echo $state ? "teal" : "tomato"?>;
 		}
 		div{
-			margin-bottom: 32px;
+			margin-bottom: 48px;
 		}
+
 		a {
 			color: white;
 			text-decoration: none;
@@ -26,12 +27,23 @@
 		a:hover{
 			text-decoration: underline;
 		}
+
+		footer{
+			position: fixed;
+			bottom: 16px;
+		}
 	</style>
 </head>
 <body>
 <div>
-LinkedIn status: <?php echo $state ? "logged in" : "not logged in"?>
+You are currently <b><?php echo $state ? "signed in" : "signed out"?></b> on LinkedIn.
 </div>
-<a href="/">Click here to try again.</a>
+<ul>
+<li><a href="/"><b>Restart</b> Detection</a></li>
+<li><a href="https://www.linkedin.com/" target="_blank">
+<b><?php echo $state ? "Sign out" : "Sign in"?></b> on LinkedIn</a></li>
+<li><a href="https://github.com/RobinLinus/csp-redirect-detection" target="_blank"><b>View</b> Source</a></li>
+
+</ul>
 </body>
 </html>
