@@ -4,7 +4,7 @@
 
 	// apc is php's native cross-process cache 
 	// (we can read it's values in a request to status.php)
-	apc_store($id."","not-logged-in");
+	apc_store($id."","0");
 	
 	// 1. Allow image requests only to https://fr.linkedin.com
 	// 2. Report any other request to our report-uri and send the user's session id  
