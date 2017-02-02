@@ -1,6 +1,13 @@
 <?php
 	session_start();
-	$state = apc_fetch(session_id()."") == "1" ? true : false;
+	$id = session_id()."";
+	$state = apc_fetch($id);
+	if( $state == "" ){
+		header('Location: /');
+		exit;
+	}
+	apc_delete($id);
+	$state = ($state == "1") ? true : false;
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,9 +46,8 @@
 You are currently <b><?php echo $state ? "signed in" : "signed out"?></b> on LinkedIn.
 </div>
 <ul>
-<li><a href="/"><b>Restart</b> Detection</a></li>
-<li><a href="https://www.linkedin.com/" target="_blank">
-<b><?php echo $state ? "Sign out" : "Sign in"?></b> on LinkedIn</a></li>
+<li><a href="https://www.linkedin.com/" target="linkedin"><b><?php echo $state ? "Sign out" : "Sign in"?></b> on LinkedIn</a></li>
+<li><a href="https://www.eff.org/privacybadger" target="_blank"><b>Protect</b> yourself with Privacy Badger</a></li>
 <li><a href="https://github.com/RobinLinus/csp-redirect-detection" target="_blank"><b>View</b> Source</a></li>
 
 </ul>
