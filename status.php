@@ -1,7 +1,8 @@
 <?php
 	session_start();
-	$id = session_id()."";
-	$state = apc_fetch($id);
+	$id = session_id();
+	$state = apc_fetch($id); // The login state. Anything below here is UI.
+
 	if( $state == "" ){
 		header('Location: /');
 		exit;
